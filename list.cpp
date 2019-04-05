@@ -114,8 +114,8 @@ class list
             tail->previous = head;
         }
 
-        iterator begin(){return *(new iterator(head->next));}
-        iterator end(){return *(new iterator(tail));}
+        iterator begin(){return iterator(head->next);}
+        iterator end(){return iterator(tail);}
 
 };
 
