@@ -2,6 +2,7 @@
 
 using namespace std;
 
+
 template<typename type>
 class queue
 {
@@ -10,12 +11,10 @@ class queue
         {
             public:
                 node(): data(NULL), next(NULL){}
-                node(type d): data(d), next(NULL){}
-                node(type d, node *n): data(d), next(n){}
-                type data;
+                node(type &d): data(d), next(NULL){}
+                node(type &d, node *n): data(d), next(n){}
+                type& data;
                 node* next;
-
-                ~node() {delete next;}
         };
 
         node* head;
@@ -23,7 +22,7 @@ class queue
 
     public:
         queue(): head(NULL), tail(NULL){}
-        void enqueue(type data)
+        void enqueue(type &data)
         {
             if (head == NULL)
                 head = tail = new node(data);
@@ -34,11 +33,13 @@ class queue
             }
         }
 
-        type& dequeue()     // node is not deleted because data inside node can still be in use by dequeue calling code.
+        type& dequeue()
         {
-            type &tmp = head->data;
+            node *n = head;
+            type &v = head->data;
             head = head->next;
-            return tmp;
+            delete n;
+            return v;
         }
 
         friend ostream& operator<<(ostream& out, const queue& s)
@@ -64,9 +65,11 @@ class queue
 int main()
 {
     queue<int> q;
-    for(int i=0; i<10; i++)
-        q.enqueue(i);
-    cout << "queue: " << q;
+    int arr[10];
+    for (int i = 0; i < 10; i++)    // literal cannot be passed i.e q.enqueue(1), passed value need to have memory allocated
+        q.enqueue(arr[i] = i);      // because queue only maintains reference to initialized data but donot allocates it.
+     cout << "queue: " << q;        // if the passed value is defined inside loop then once the next loop iteration starts
+                                    // the value will get uninitialized because of out of scope and will get overwritten.
 
     for(int i=0; i<5; i++)
         cout << "dequeued: " << q.dequeue() << "\n";
