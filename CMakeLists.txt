@@ -3,4 +3,6 @@ project(Practice)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Practice list.cpp)
+add_executable(list list.cpp)
+add_executable(stack  stack.cpp)
+add_executable(queue  queue.cpp)
