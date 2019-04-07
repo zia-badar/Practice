@@ -8,11 +8,14 @@ class list
     public: class iterator;
 
     private:
-        struct node
+        class node
         {
-            type data;
-            node* next;
-            node* previous;
+            public:
+                type& data;
+                node* next;
+                node* previous;
+
+                node(): data(NULL), next(NULL), previous(NULL) {}
         };
 
         node* head;
@@ -23,7 +26,7 @@ class list
         class iterator
         {
             public:
-                iterator(){}
+                iterator(): node(NULL) {}
 
                 const type& operator*(){return current->data;}
                 bool operator==(iterator iter){return current == iter.current;}
@@ -43,9 +46,7 @@ class list
 
                 private:
                     node* current;
-
-                    iterator(node *n) : current(n) {}
-                    node* get_current(){return current;}
+                    iterator(node *n): current(n) {}
 
                     friend class list;
         };
@@ -62,7 +63,7 @@ class list
 
         void add(type data)
         {
-            node *n = new node;
+            node *n = new node();
             n->data = data;
             n->previous = tail->previous;
             n->next = tail;

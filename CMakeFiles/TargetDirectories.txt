@@ -1,0 +1,5 @@
+/home/zia/work/Practice/CMakeFiles/edit_cache.dir
+/home/zia/work/Practice/CMakeFiles/queue.dir
+/home/zia/work/Practice/CMakeFiles/list.dir
+/home/zia/work/Practice/CMakeFiles/rebuild_cache.dir
+/home/zia/work/Practice/CMakeFiles/stack.dir
