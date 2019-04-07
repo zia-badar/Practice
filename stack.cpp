@@ -9,7 +9,7 @@ class stack
         class node
         {
             public:
-                node(): data(NULL), next(NULL){}
+                node(): next(NULL){}
                 node(type &d): data(d), next(NULL){}
                 node(type &d, node *n): data(d), next(n){}
                 type &data;

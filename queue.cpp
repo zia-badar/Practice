@@ -10,12 +10,11 @@ class queue
         class node
         {
             public:
-                node(): data(NULL), next(NULL){}
                 node(type &d): data(d), next(NULL){}
                 node(type &d, node *n): data(d), next(n){}
-                type& data;
-                node* next;
-        };
+                type& data;                                     // reference is used because data inside node will
+                node* next;                                     // never change and we have no node with null value of
+        };                                                      // data
 
         node* head;
         node* tail;
