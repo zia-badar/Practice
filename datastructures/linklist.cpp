@@ -3,7 +3,7 @@
 using namespace std;
 
 template<typename type>
-class list
+class linklist
 {
     public: class iterator;
 
@@ -47,10 +47,10 @@ class list
                     node* current;
                     iterator(node *n): current(n) {}
 
-                    friend class list;
+                    friend class linklist;
         };
 
-        list()
+        linklist()
         {
             head = new node();
             tail = new node();
@@ -93,14 +93,14 @@ class list
         }
 
         // shallow copy of data inside passed list
-        list& operator+=(const list<type> &l)
+        linklist& operator+=(const linklist<type> &l)
         {
             for(node *n = l.head->next; n != l.tail; n = n->next)
                 add(*n->data);
             return *this;
         }
 
-        friend ostream& operator<<(ostream& out, const list<type> &l)
+        friend ostream& operator<<(ostream& out, const linklist<type> &l)
         {
             out << '[';
             for(node* n=l.head->next; n!=l.tail; n=n->next)
@@ -119,13 +119,13 @@ class list
         iterator begin(){return iterator(head->next);}
         iterator end(){return iterator(tail);}
 
-        ~list(){delete head; delete tail;}
+        ~linklist(){delete head; delete tail;}
 
 };
 
 int main()
 {
-    list<int> l, l2;
+    linklist<int> l, l2;
     int size = 10;
     int arr[size];
     int arr2[size];
@@ -154,7 +154,7 @@ int main()
 
 
     //-------------------------------------------------------------------------------
-    cout << "combining lists opeartion\n";
+    cout << "combining linklists opeartion\n";
     for(int i=0; i<size; i++) l.add(arr[i]=i);
     for(int i=0; i<size; i++) l2.add(arr2[i]=size+i);
     l += l2;
@@ -166,7 +166,7 @@ int main()
     //-------------------------------------------------------------------------------
     cout << "iterator opeartion\n";
     for(int i=0; i<10; i++) l.add(arr[i]=i);
-    for(list<int>::iterator iter = l.begin(); iter != l.end(); iter++)
+    for(linklist<int>::iterator iter = l.begin(); iter != l.end(); iter++)
          cout << *iter << ", ";
     cout << "\n\n\n";
     l.clear();
