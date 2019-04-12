@@ -88,8 +88,6 @@ int main()
     int size = 1024;
     int arr[size];
 
-    srand(time(NULL));
-
 
     for (int i = size; i > 0; i--)
         h.add(arr[i] = i);
