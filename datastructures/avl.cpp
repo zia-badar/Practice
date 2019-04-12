@@ -12,14 +12,7 @@ class avl
     private:
         class node
         {
-            public:
-                type& data;
-                node *left;
-                node *right;
-                int height;
-
-                node(type &d): data(d), left(NULL), right(NULL), height(1) {}
-                node(type &d, node *l, node *r): data(d), left(l), right(r), height(1) {}
+            private:
                 string to_string(string tab)
                 {
                     ostringstream oss(ostringstream::ate);
@@ -30,16 +23,31 @@ class avl
                     if(right != NULL) oss << right->to_string(tab);
                     else oss << tab << "|-->" << "\n";
                     return oss.str();
-                };
+                }
+
+            public:
+                type& data;
+                node *left;
+                node *right;
+                int height;
+
+                node(type &d): data(d), left(NULL), right(NULL), height(1) {}
+                node(type &d, node *l, node *r): data(d), left(l), right(r), height(1) {}
+
+                friend ostream& operator<<(ostream &out, node &n)
+                {
+                    out << n.to_string("");
+                    return out;
+                }
         };
         node* head;
 
-        node* add_(node *n, type &d)
+        node* add(node *n, type &d)
         {
             if(n == NULL) return new node(d);
 
-            if(d < n->data) n->left = add_(n->left, d);
-            else if(d > n->data) n->right = add_(n->right, d);
+            if(d < n->data) n->left = add(n->left, d);
+            else if(d > n->data) n->right = add(n->right, d);
             else return n;
 
             int lh = get_height(n->left);
@@ -114,7 +122,7 @@ class avl
         friend ostream& operator<<(ostream &out, avl &t)
         {
             out << "------------------------------------------------\n";
-            out << t.head->to_string("");
+            out << *t.head;
             out << "------------------------------------------------\n";
             return out;
         }
@@ -123,7 +131,7 @@ class avl
 
         void add(type &d)
         {
-            head = add_(head, d);
+            head = add(head, d);
         }
 
 };
