@@ -82,9 +82,7 @@ class segmented_tree
 
         friend ostream& operator<<(ostream &out, segmented_tree &t)
         {
-            out << "------------------------------------------------\n";
             out << *t.root;
-            out << "------------------------------------------------\n";
             return out;
         }
 
@@ -94,13 +92,14 @@ class segmented_tree
         }
 };
 
-// range string functions, empty value is ""
-string combine_function1(string s1, string s2) { return s1 + (s1 != "" &&  s2 != "" ? ", " : "") + s2; }
-string map_function1(int i){ return to_string(i); }
 
 // range sum functions, empty value is 0
-int combine_function2(int s1, int s2) { return s1 + s2; }
-int map_function2(int i){ return i; }
+int combine_function1(int s1, int s2) { return s1 + s2; }
+int map_function1(int i){ return i; }
+
+// range string functions, empty value is ""
+string combine_function2(string s1, string s2) { return s1 + s2; }
+string map_function2(int i){ return "-"+to_string(i)+"-"; }
 
 int main()
 {
@@ -110,14 +109,14 @@ int main()
         arr[i] = i;
 
     segmented_tree<int, int> tree;
-    tree.build(arr, size, combine_function2, map_function2);
-    cout << "sum from 1 to 9: " << tree.query(1, 9,  combine_function2, 0) << endl;
-    cout << "sum from 3 to 8: " << tree.query(3, 8,  combine_function2, 0) << endl;
-    cout << "sum from 7 to 7: " << tree.query(7, 7,  combine_function2, 0) << endl;
+    tree.build(arr, size, combine_function1, map_function1);
+    cout << "sum from 1 to 9: " << tree.query(1, 9,  combine_function1, 0) << endl;
+    cout << "sum from 3 to 8: " << tree.query(3, 8,  combine_function1, 0) << endl;
+    cout << "sum from 7 to 7: " << tree.query(7, 7,  combine_function1, 0) << endl;
 
     segmented_tree<string, int> *t2 = new segmented_tree<string, int>();
-    t2->build(arr, size, combine_function1, map_function1);
-    cout << "range string from 3 to 8 is: " << t2->query(3, 8, combine_function1, "") << endl;
+    t2->build(arr, size, combine_function2, map_function2);
+    cout << "range string from 3 to 8 is: " << t2->query(3, 8, combine_function2, "") << endl;
     delete t2;
 
 
