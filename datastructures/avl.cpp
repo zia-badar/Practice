@@ -17,7 +17,7 @@ class avl
                 {
                     ostringstream oss(ostringstream::ate);
                     oss << tab << "|--> (data: " << data << ", height: " << height << ")\n";
-                    tab += "|\t";
+                    tab += "\t";
                     if(left != NULL) oss << left->to_string(tab);
                     else oss << tab << "|-->" << "\n";
                     if(right != NULL) oss << right->to_string(tab);
