@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cmath>
+#include <vector>
 
 using namespace std;
 
@@ -73,6 +75,42 @@ void quick_sort(data_type *arr, int l, int r, void (*swap)(data_type&, data_type
     quick_sort(arr, j+1, r, swap);
 }
 
+#define nth_digit(i, n) ((i / (n != 1 ? (int)pow(10, (n-1)) : 1)) % 10)
+
+void radix_sort(int *arr, int size)
+{
+    int largest_number_size = 0;
+    for (int i = 0; i < size; i++)
+    {
+        int t = arr[i], l=0;
+        while (t > 0)
+        {
+            t /= 10;
+            l++;
+        }
+        if(l > largest_number_size) largest_number_size = l;
+    }
+
+    vector<int> sort_table[10];
+    for(int i=0; i<size; i++) sort_table[0].push_back(arr[i]);
+
+    for(int i=1; i<=largest_number_size; i++)
+    {
+        vector<int> tmp_table[10];
+
+        for (int j=0; j<10; j++)
+            for(int k=0; k<sort_table[j].size(); k++)
+                tmp_table[nth_digit(sort_table[j][k], i)].push_back(sort_table[j][k]);
+
+        for (int j=0; j<10; j++)
+            sort_table[j] = tmp_table[j];
+    }
+
+    for (int i=0, k=0; i<10; i++)
+        for(int j=0; j<sort_table[i].size(); j++)
+            arr[k++] = sort_table[i][j];
+}
+
 template<typename data_type>
 void unsort(data_type *arr, int size, void (*swap)(data_type&, data_type&))
 {
@@ -133,6 +171,13 @@ int main()
     for(int i=0; i<size; i++) cout << array[i] << (i==size-1 ? "\n" : ", ");
     quick_sort(array, 0, size-1, swap);
     cout << "after quick sort: ";
+    for(int i=0; i<size; i++) cout << array[i] << (i==size-1 ? "\n\n" : ", ");
+
+    unsort(array, size, swap);
+    cout << "before sorting: ";
+    for(int i=0; i<size; i++) cout << array[i] << (i==size-1 ? "\n" : ", ");
+    radix_sort(array, size);
+    cout << "after radix sort: ";
     for(int i=0; i<size; i++) cout << array[i] << (i==size-1 ? "\n\n" : ", ");
 
     return 0;
