@@ -3,13 +3,17 @@ project(Practice)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(linklist datastructures/linklist.cpp)
-add_executable(stack datastructures/stack.cpp)
-add_executable(queue datastructures/queue.cpp)
-add_executable(hashamp datastructures/hashmap.cpp)
-add_executable(heap datastructures/heap.cpp)
-add_executable(avl datastructures/avl.cpp datastructures/dynamic_heap.cpp)
-add_executable(segmented_tree datastructures/segmented_tree.cpp)
-add_executable(binary_index_tree datastructures/binary_index_tree.cpp)
-add_executable(sorting algorithms/sorting.cpp)
-add_executable(dynamic_heap datastructures/dynamic_heap.cpp)
+add_executable(sorting tests/sorting.cpp)
+add_executable(union_find algorithms/union_find.cpp)
+
+add_executable(avl tests/avl.cpp)
+add_executable(binary_index_tree tests/binary_index_tree.cpp)
+add_executable(dynamic_heap tests/dynamic_heap.cpp)
+add_executable(hashamp tests/hashmap.cpp)
+add_executable(heap tests/heap.cpp)
+add_executable(linklist tests/linklist.cpp)
+add_executable(queue tests/queue.cpp)
+add_executable(segmented_tree tests/segmented_tree.cpp)
+add_executable(stack tests/stack.cpp)
+
+#to do check hashmap

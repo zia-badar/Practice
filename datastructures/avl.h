@@ -1,3 +1,6 @@
+#ifndef AVL_TREE_H
+#define AVL_TREE_H
+
 #include <iostream>
 #include <sstream>
 
@@ -136,17 +139,4 @@ class avl
 
 };
 
-int main()
-{
-    avl<int> t;
-    int size = 1023;        // 2^n-1 elements creates n height avl tree
-    int arr[size];
-
-
-    for (int i = 0; i < size; i++)
-        t.add(arr[i] = i+1);
-
-    cout << t;
-
-    return 0;
-}
+#endif

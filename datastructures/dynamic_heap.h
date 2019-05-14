@@ -1,3 +1,6 @@
+#ifndef DYNAMIC_HEAP_H
+#define DYNAMIC_HEAP_H
+
 #include <iostream>
 
 using namespace std;
@@ -114,21 +117,4 @@ class dynamic_heap
         }
 };
 
-int main()
-{
-    dynamic_heap<int> heap;
-    int size = 1024;
-    int arr[size];
-
-
-    for (int i = size; i > 0; i--)
-        heap.add(arr[i] = i);
-
-
-    cout << "removed elements: ";
-    for (int i = 0; i < size; i++)
-        cout << heap.remove() << ((i==size-1) ? "" : ", ");
-
-
-    return 0;
-}
+#endif

@@ -1,3 +1,6 @@
+#ifndef HASHMAP_H
+#define HASHMAP_H
+
 #include <iostream>
 #include <cmath>
 
@@ -152,21 +155,5 @@ class hashmap
             return out;
         }
 };
-uintptr_t simple_hash_function(const int &k) {return reinterpret_cast<uintptr_t>(&k);}
 
-int main()
-{
-    hashmap<int, int> hmap(hashmap<int, int>::linear_probing, simple_hash_function);
-    int size = 2048;
-    int keys[size], values[size];
-    for (int i=0; i<size; i++)
-    {
-        keys[i] = i+1-1;
-        values[i] = i*10;
-    }
-    for (int i = 0; i < size; i++)
-        hmap.add(keys[i], values[i]);
-    cout << hmap;
-
-    return 0;
-}
+#endif
