@@ -3,17 +3,28 @@
 int main()
 {
     dynamic_heap<int> heap;
-    int size = 1024;
+    int size = 5;
     int arr[size];
 
 
     for (int i = size; i > 0; i--)
-        heap.add(arr[i] = i);
+    {
+        cout << "------------------------------------------------\n";
+        cout << "before:\n" << heap << endl;
+        cout << "added: " << i << "\n\n";
+        heap.add(arr[i]=i);
+        cout << "after:\n" << heap << endl;
+        cout << "------------------------------------------------\n";
+    }
 
-
-    cout << "removed elements: ";
     for (int i = 0; i < size; i++)
-        cout << heap.remove() << ((i==size-1) ? "" : ", ");
+    {
+        cout << "------------------------------------------------\n";
+        cout << "before:\n" << heap << endl;
+        cout << "removed: " << heap.remove() << "\n\n";
+        cout << "after:\n" << heap << endl;
+        cout << "------------------------------------------------\n";
+    }
 
 
     return 0;

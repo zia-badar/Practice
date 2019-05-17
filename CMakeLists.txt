@@ -3,6 +3,7 @@ project(Practice)
 
 set(CMAKE_CXX_STANDARD 14)
 
+add_executable(dijkstra algorithms/dijkstra.cpp)
 add_executable(sorting tests/sorting.cpp)
 add_executable(union_find algorithms/union_find.cpp)
 

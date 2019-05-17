@@ -2,6 +2,8 @@
 #define DYNAMIC_HEAP_H
 
 #include <iostream>
+#include <unordered_map>
+#include <sstream>
 
 using namespace std;
 
@@ -18,15 +20,32 @@ class dynamic_heap
                 node* right;
                 node* previous; // it represents the previous node in heap tree in top to bottom, left to right order
                 node* next;     // it represents the next node in heap tree in top to bottom, left to right order
-                type *data;
+                type* data;
 
                 node(): parent(NULL), left(NULL), right(NULL), previous(NULL), next(NULL) {};
                 node(type *d): parent(NULL), left(NULL), right(NULL), previous(NULL), next(NULL), data(d) {};
+                string to_string(string tab)
+                {
+                    ostringstream oss(ostringstream::ate);
+                    oss << tab << "|--> data: " << *data << "\n";
+                    tab += "\t";
+                    if(left != NULL) oss << left->to_string(tab);
+                    else oss << tab << "|-->" << "\n";
+                    if(right != NULL) oss << right->to_string(tab);
+                    else oss << tab << "|-->" << "\n";
+                    return oss.str();
+                }
+                friend ostream& operator<<(ostream &out, node &n)
+                {
+                    out << n.to_string("");
+                    return out;
+                }
         };
 
         node* root; // it represent the first node in heap from top to bottom, left to right.
         node* last; // it represent the last node in heap from top to bottom, left to right.
         node* last_parent;   // it represent the first node who has less than two childern when going from top to bottom, left to right.
+        unordered_map<type*, node*> map;  // it represent mapping from data to node in heap, used for decreasing a perticular data.
 
     public:
 
@@ -35,9 +54,11 @@ class dynamic_heap
         void add(type& data)
         {
             node* n = new node(&data);
+            map[&data] = n;
 
-            if(last_parent == NULL)
+            if(root == NULL)
             {
+                n->previous = n->parent = NULL;
                 root = last_parent = last = n;
                 return;
             }
@@ -48,7 +69,7 @@ class dynamic_heap
 
             if(last_parent->left == NULL)
             {
-                last_parent->left = n;    // connect new node to last parent
+                last_parent->left = n;                      // connect new node to last parent
                 n->parent = last_parent;
             }
             else if(last_parent->right == NULL)             // if right is consumed of last parent then update
@@ -58,13 +79,7 @@ class dynamic_heap
                 last_parent = last_parent->next;
             }
 
-            while(n->parent != NULL && n->parent->data > n->data)    // pushing up
-            {
-                type *t = n->parent->data;
-                n->parent->data = n->data;
-                n->data = t;
-                n = n->parent;
-            }
+            push_up(n);
         }
 
         type& remove()
@@ -72,21 +87,19 @@ class dynamic_heap
             if(root == NULL) throw "heap empty exception";
             type* d = root->data;
 
-            if(last_parent == NULL)             // if only one entry exists in heap
+            if(last == root)             // if only one entry exists in heap
             {
                 delete root;
                 root = last_parent = last = NULL;
                 return *d;
             }
 
-            if(last->parent->left == last)              // if last entry is left child, disconnect it from its parent
-            {                                           // and update last parent to point to previous node in
-                last_parent->left = NULL;               // top to bootom left to right order
-                last_parent = last_parent->previous;
-            }
-            else
+            if(last->parent->left == last)              // if last entry is right child, disconnect it from its parent
+                last->parent->left = NULL;              // and update last parent to point to previous node in
+            else                                        // top to bootom left to right order
             {
-                last_parent->right = NULL;              // disconnect last from its parent
+                last_parent = last_parent->previous;
+                last->parent->right = NULL;              // disconnect last from its parent
             }
 
             last->previous->next = NULL;                // disconnect from second last node
@@ -96,24 +109,58 @@ class dynamic_heap
             last = last->previous;                      // updating last node
             delete old_last;                            // deleting last node
 
-            node *n = root;                             // pushing down
+            push_down(root);                            // pushing down
+
+            return *d;
+        }
+
+        void decrease_entry(type &data, type value)
+        {
+            if(map.find(&data) == map.end()) return;
+            node* n = map.find(&data)->second;
+            *n->data -= value;
+            push_up(n);
+        }
+
+        void push_up(node* n)
+        {
+            while(n->parent != NULL && *n->parent->data > *n->data)    // pushing up
+            {
+                swap(n, n->parent);
+                n = n->parent;
+            }
+        }
+
+        void push_down(node* n)
+        {
             while((n->left != NULL && *n->data > *n->left->data) || (n->right != NULL && *n->data > *n->right->data))
                 if(*n->left->data < *n->right->data)
                 {
-                    type* t = n->data;
-                    n->data = n->left->data;
-                    n->left->data = t;
+                    swap(n, n->left);
                     n = n->left;
                 }
                 else
                 {
-                    type* t = n->data;
-                    n->data = n->right->data;
-                    n->right->data = t;
+                    swap(n, n->right);
                     n = n->right;
                 }
+        }
 
-            return *d;
+        // it swaps the data of two nodes and updates the hashmap of data to nodes.
+        void swap(node* n1, node* n2)
+        {
+            type* t = n1->data;
+            n1->data = n2->data;
+            n2->data = t;
+            map[n1->data] = n1;
+            map[n2->data] = n2;
+        }
+
+        friend ostream& operator<<(ostream &out, dynamic_heap& heap)
+        {
+            if(heap.root != NULL)
+                out << *heap.root;
+            return out;
         }
 };
 
