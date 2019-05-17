@@ -41,7 +41,6 @@ class dynamic_heap
                     out << n.to_string("");
                     return out;
                 }
-                ~node() { parent = left = right = previous = next = NULL; data = NULL; }
         };
 
         node* root; // it represent the first node in heap from top to bottom, left to right.
