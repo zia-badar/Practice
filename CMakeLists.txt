@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 add_executable(dijkstra tests/dijkstra.cpp)
 add_executable(sorting tests/sorting.cpp)
-add_executable(union_find algorithms/union_find.cpp)
+add_executable(union_find tests/union_find.cpp)
 
 add_executable(avl tests/avl.cpp)
 add_executable(binary_index_tree tests/binary_index_tree.cpp)
