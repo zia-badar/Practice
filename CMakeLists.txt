@@ -12,9 +12,12 @@ add_executable(binary_index_tree tests/binary_index_tree.cpp)
 add_executable(dynamic_heap tests/dynamic_heap.cpp)
 add_executable(hashamp tests/hashmap.cpp)
 add_executable(heap tests/heap.cpp)
+add_executable(kruskal tests/kruskal.cpp)
 add_executable(linklist tests/linklist.cpp)
 add_executable(queue tests/queue.cpp)
 add_executable(segmented_tree tests/segmented_tree.cpp)
 add_executable(stack tests/stack.cpp)
+
+add_executable(test test.cpp)
 
 #to do check hashmap
