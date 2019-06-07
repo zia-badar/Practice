@@ -9,7 +9,7 @@ int main()
 {
     srand(time(NULL));
 
-    int size = 100;
+    int size = 10;
     int sorted[size], unsorted[size];
 
     for(int i=0; i<size; i++)

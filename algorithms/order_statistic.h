@@ -12,9 +12,9 @@ data_type get_kth_smallest(data_type* array, int l, int r, int k, void (*swap)(d
             swap(array[i], array[j++]);
     swap(array[r], array[j]);
 
-    if(j == k)
+    if(j-l == k)
         return array[j];
-    else if(j < k)
-        return get_kth_smallest(array, j+1, r, k, swap);
+    else if(j-l < k)
+        return get_kth_smallest(array, j+1, r, k-(j-l+1), swap);
     return get_kth_smallest(array, l, j-1, k, swap);
 }
