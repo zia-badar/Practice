@@ -9,6 +9,7 @@ add_executable(union_find tests/union_find.cpp)
 
 add_executable(avl tests/avl.cpp)
 add_executable(binary_index_tree tests/binary_index_tree.cpp)
+add_executable(binomial_heap tests/binomial_heap.cpp)
 add_executable(dynamic_heap tests/dynamic_heap.cpp)
 add_executable(hashamp tests/hashmap.cpp)
 add_executable(heap tests/heap.cpp)
