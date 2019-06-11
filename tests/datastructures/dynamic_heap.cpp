@@ -1,4 +1,4 @@
-#include "../datastructures/dynamic_heap.h"
+#include "../../datastructures/dynamic_heap.h"
 
 int main()
 {

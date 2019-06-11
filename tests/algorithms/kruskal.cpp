@@ -1,4 +1,4 @@
-#include "../algorithms/kruskal.h"
+#include "../../algorithms/kruskal.h"
 
 int main()
 {

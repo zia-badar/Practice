@@ -1,4 +1,4 @@
-#include "../datastructures/linklist.h"
+#include "../../datastructures/linklist.h"
 
 int main()
 {

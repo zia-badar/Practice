@@ -1,5 +1,5 @@
 #include<iostream>
-#include "../algorithms/dijkstra.h"
+#include "../../algorithms/dijkstra.h"
 
 using namespace std;
 

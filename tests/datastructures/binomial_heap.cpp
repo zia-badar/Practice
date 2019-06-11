@@ -1,7 +1,7 @@
 #include<iostream>
 
-#include "../datastructures/binomial_heap.h"
-#include "../algorithms/sorting.h"
+#include "../../datastructures/binomial_heap.h"
+#include "../../algorithms/sorting.h"
 
 using namespace std;
 

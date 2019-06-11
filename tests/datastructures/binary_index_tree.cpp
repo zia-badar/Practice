@@ -1,4 +1,4 @@
-#include "../datastructures/binary_index_tree.h"
+#include "../../datastructures/binary_index_tree.h"
 
 int main()
 {

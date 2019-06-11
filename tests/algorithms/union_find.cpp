@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../algorithms/union_find.h"
+#include "../../algorithms/union_find.h"
 
 using namespace std;
 

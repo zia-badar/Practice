@@ -1,3 +1,6 @@
+#ifndef  BINOMIAL_HEAP_H
+#define  BINOMIAL_HEAP_H
+
 #include <climits>
 
 template<typename data>
@@ -163,3 +166,5 @@ class binomial_heap
 
         // todo decrease value function
 };
+
+#endif

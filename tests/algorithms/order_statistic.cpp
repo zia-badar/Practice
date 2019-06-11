@@ -1,7 +1,7 @@
 #include <iostream>
 #include <time.h>
-#include "../algorithms/sorting.h"
-#include "../algorithms/order_statistic.h"
+#include "../../algorithms/sorting.h"
+#include "../../algorithms/order_statistic.h"
 
 using namespace std;
 

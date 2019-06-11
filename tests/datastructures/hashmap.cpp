@@ -1,4 +1,4 @@
-#include "../datastructures/hashmap.h"
+#include "../../datastructures/hashmap.h"
 
 // address of key is considered as its hash
 uintptr_t simple_hash_function(const int &k) {return reinterpret_cast<uintptr_t>(&k);}

@@ -1,4 +1,4 @@
-#include "../datastructures/segmented_tree.h"
+#include "../../datastructures/segmented_tree.h"
 
 int main()
 {
