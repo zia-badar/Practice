@@ -54,7 +54,14 @@ class palaindrom_partitioning
 
             memo = new int[str.size()];
             for(int i=0; i<str.size(); i++) memo[i] = -1;
-            return solve(str, 0);
+
+            int ret = solve(str, 0);
+
+            for(int i=0; i<str.size(); i++) delete [] palaindrom_possible[i];
+            delete [] palaindrom_possible;
+            delete [] memo;
+
+            return ret;
         }
 };
 
