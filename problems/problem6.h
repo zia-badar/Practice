@@ -39,7 +39,7 @@ int solve(string str)
             memo[i][j] = -1;
     //-------------------------------------------------------------------------------------------------
 
-    int ret = longest_repeating_subsequence(str, 0, 1);
+    int ret = longest_repeating_subsequence(str, 0, 0);
 
     //----------------------------- memory deallocation ----------------------------------------------
     for(int i=0; i<str.length(); i++)
