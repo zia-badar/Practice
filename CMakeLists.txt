@@ -27,6 +27,8 @@ add_executable(problem1 tests/problems/problem1.cpp)
 add_executable(problem2 tests/problems/problem2.cpp)
 add_executable(problem3 tests/problems/problem3.cpp)
 add_executable(problem4 tests/problems/problem4.cpp)
+add_executable(problem5 tests/problems/problem5.cpp)
+add_executable(problem6 tests/problems/problem6.cpp)
 
 add_executable(test test.cpp)
 

@@ -2,6 +2,7 @@
 #ifndef PROBLEM_4_H
 #define PROBLEM_4_H
 
+
 int count(int* array1, int size1, int* array2, int size2, int x)
 {
     int p1 = 0, p2 = size2-1;
