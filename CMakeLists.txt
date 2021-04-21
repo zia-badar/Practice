@@ -4,6 +4,7 @@ project(Practice)
 set(CMAKE_CXX_STANDARD 14)
 
 # algorithms
+add_executable(cluster_graph tests/algorithms/cluster_graph.cpp tests/algorithms/cluster_graph.cpp)
 add_executable(dijkstra tests/algorithms/dijkstra.cpp)
 add_executable(kruskal tests/algorithms/kruskal.cpp)
 add_executable(order_statistic tests/algorithms/order_statistic)
@@ -30,6 +31,5 @@ add_executable(problem4 tests/problems/problem4.cpp)
 add_executable(problem5 tests/problems/problem5.cpp)
 add_executable(problem6 tests/problems/problem6.cpp)
 
-add_executable(test test.cpp)
 
 #to do check hashmap
